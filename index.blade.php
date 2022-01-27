@@ -7,16 +7,16 @@
             <ul class="nav">
                 <li class="nav-item">
                     <a role="tab" data-toggle="tab" class="nav-link active" href="#tab-content-0">
-                        <span>Type List</span>
+                        <span>User Group List</span>
                     </a>
                 </li>
             </ul>
         </div>
         <div class="">
             <div class="btn-actions-pane-right">
-                <a type="button" href="{{ route('group.create') }}"
+                <a type="button" href="{{ route('userGroup.create') }}"
                     class="btn-icon btn-wide btn-outline-2x btn btn-outline-focus btn-sm d-flex">
-                    Create New Type
+                    Create User Group
                 </a>
             </div>
         </div>
@@ -51,19 +51,18 @@
                             <div class="col-md-12">
                                 <div class="main-card mb-3 card">
                                     <div class="card-body">
-                                        <table style="width: 100%;"
-                                            class="table table-hover table-striped table-bordered">
+                                        <table style="width: 100%;" class="table table-hover table-striped table-bordered">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Title</th>
-                                                    <th>Slug</th>
+
                                                     <th class="text-center">Status</th>
                                                     <th class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($group_item as $item)
+                                                @foreach ($userGroup as $item)
 
 
                                                     <tr>
@@ -72,25 +71,24 @@
 
                                                         <td>{{ $item->title }}</td>
 
-                                                        <td style="text-transform: lowercase">{{ $item->slug }}</td>
 
                                                         <td class="text-center">
                                                             @if ($item->status == '1')
-                                                            <div class="mb-2 mr-2 badge badge-success">Active</div>
+                                                                <div class="mb-2 mr-2 badge badge-success">Active</div>
 
-                                                        @else
-                                                            <div class="mb-2 mr-2 badge badge-success">Deactive</div>
-                                                        @endif
+                                                            @else
+                                                                <div class="mb-2 mr-2 badge badge-success">Deactive</div>
+                                                            @endif
                                                         </td>
                                                         <td class="text-center">
-                                                            <form action="{{ route('group.destroy', $item->id) }}"
+                                                            <form action="{{ route('userGroup.destroy', $item->id) }}"
                                                                 method="POST">
-                                                                <a href="{{ route('group.show', $item->id) }}">
+                                                                {{-- <a href="{{ route('userGroup.show', $item->id) }}">
 
                                                                     <button type="button" class="btn-xs btn btn-success"><i
                                                                             class="fas fa-eye"></i></i></button>
-                                                                </a>
-                                                                <a href="{{ route('group.edit', $item->id) }}">
+                                                                </a> --}}
+                                                                <a href="{{ route('userGroup.edit', $item->id) }}">
 
                                                                     <button type="button" class="btn-xs btn btn-primary"><i
                                                                             class="far fa-edit"></i></button>
@@ -108,7 +106,7 @@
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        @include('admin.partials.paginate',['style' => 'rounded', 'data' => $group_item,])
+                                        @include('admin.partials.paginate',['style' => 'rounded', 'data' => $userGroup,])
                                     </div>
                                 </div>
                             </div>
